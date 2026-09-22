@@ -1,0 +1,748 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.escena {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #050914, #0c1728, #142d29);
+}
+
+.cielo {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 50% 70%,
+        rgba(255, 214, 102, 0.08),
+        transparent 35%
+    );
+}
+
+.estrellas {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, white 1px, transparent 1.5px),
+        radial-gradient(circle, white 1px, transparent 1.5px),
+        radial-gradient(circle, white 1px, transparent 1.5px);
+    background-size: 90px 90px, 140px 140px, 190px 190px;
+    background-position: 10px 20px, 40px 80px, 100px 30px;
+    opacity: 0.55;
+    animation: estrellas 10s linear infinite;
+}
+
+@keyframes estrellas {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(25px);
+    }
+}
+
+
+/* ========================================
+   LUNA
+   ======================================== */
+
+.luna {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top: 12%;
+    right: 14%;
+    border-radius: 50%;
+    background: #fff4c4;
+
+    box-shadow: 0 0 20px rgba(255, 244, 196, 0.4);
+
+    cursor: pointer;
+
+    z-index: 30;
+
+    transition: transform 0.3s ease;
+}
+
+.luna:hover {
+    transform: scale(1.08);
+}
+
+
+/* ========================================
+   PANTALLA INICIAL
+   ======================================== */
+
+.inicio {
+    position: absolute;
+    z-index: 20;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+    color: white;
+
+    transition:
+        opacity 1.5s ease,
+        transform 1.5s ease;
+}
+
+.inicio p {
+    font-size: 18px;
+    letter-spacing: 2px;
+    opacity: 0.75;
+    margin-bottom: 20px;
+}
+
+.inicio h1 {
+    font-size: 70px;
+    margin-bottom: 25px;
+
+    animation:
+        respirar 2s ease-in-out infinite;
+}
+
+@keyframes respirar {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+#boton {
+    padding: 13px 30px;
+
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: white;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#boton:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: scale(1.08);
+}
+
+
+/* ========================================
+   JARDÍN
+   ======================================== */
+
+.jardin {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0;
+
+    transition:
+        opacity 2s ease;
+}
+
+.suelo {
+    position: absolute;
+
+    width: 140%;
+    height: 30%;
+
+    left: -20%;
+    bottom: -17%;
+
+    border-radius: 50% 50% 0 0;
+
+    background: #0c2921;
+}
+
+.planta {
+    position: absolute;
+
+    width: 180px;
+    height: 360px;
+
+    left: 50%;
+    bottom: 18%;
+
+    transform: translateX(-50%);
+}
+
+.tallo {
+    position: absolute;
+
+    width: 8px;
+    height: 0;
+
+    left: 86px;
+    bottom: 0;
+
+    background: #4d8b4b;
+
+    border-radius: 10px;
+
+    transition:
+        height 3s ease;
+}
+
+.hoja {
+    position: absolute;
+
+    width: 70px;
+    height: 32px;
+
+    background: #4c9148;
+
+    opacity: 0;
+
+    transition:
+        opacity 2s ease;
+}
+
+.hoja1 {
+    left: 20px;
+    bottom: 100px;
+
+    border-radius: 100% 0 100% 0;
+
+    transform: rotate(-25deg);
+}
+
+.hoja2 {
+    right: 15px;
+    bottom: 150px;
+
+    border-radius: 0 100% 0 100%;
+
+    transform: rotate(25deg);
+}
+
+
+/* ========================================
+   FLOR PRINCIPAL
+   ======================================== */
+
+.flor {
+    position: absolute;
+
+    width: 140px;
+    height: 140px;
+
+    left: 20px;
+    top: -15px;
+
+    transform: scale(0);
+
+    transition:
+        transform 2.5s cubic-bezier(
+            0.17,
+            0.67,
+            0.27,
+            1.3
+        );
+}
+
+.petalo {
+    position: absolute;
+
+    width: 50px;
+    height: 72px;
+
+    left: 45px;
+    top: 34px;
+
+    background: #ffd83d;
+
+    border-radius:
+        60% 60% 45% 45%;
+
+    transform-origin:
+        center 36px;
+
+    box-shadow:
+        0 0 15px rgba(
+            255,
+            216,
+            61,
+            0.25
+        );
+}
+
+.petalo1 {
+    transform: rotate(0deg) translateY(-32px);
+}
+
+.petalo2 {
+    transform: rotate(45deg) translateY(-32px);
+}
+
+.petalo3 {
+    transform: rotate(90deg) translateY(-32px);
+}
+
+.petalo4 {
+    transform: rotate(135deg) translateY(-32px);
+}
+
+.petalo5 {
+    transform: rotate(180deg) translateY(-32px);
+}
+
+.petalo6 {
+    transform: rotate(225deg) translateY(-32px);
+}
+
+.petalo7 {
+    transform: rotate(270deg) translateY(-32px);
+}
+
+.petalo8 {
+    transform: rotate(315deg) translateY(-32px);
+}
+
+.centro {
+    position: absolute;
+
+    width: 42px;
+    height: 42px;
+
+    left: 49px;
+    top: 49px;
+
+    z-index: 5;
+
+    border-radius: 50%;
+
+    background: #8a5b17;
+}
+
+
+/* ========================================
+   LATIDO DE LA FLOR
+   ======================================== */
+
+@keyframes palpitarFlor {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+}
+
+
+/* ========================================
+   FLORES PEQUEÑAS
+   ======================================== */
+
+.flor-pequena {
+    position: absolute;
+
+    font-size: 25px;
+
+    opacity: 0;
+
+    transform: scale(0);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+}
+
+.flor-a {
+    left: 25%;
+    bottom: 14%;
+}
+
+.flor-b {
+    left: 70%;
+    bottom: 19%;
+}
+
+.flor-c {
+    left: 82%;
+    bottom: 11%;
+}
+
+
+/* ========================================
+   PARTÍCULAS
+   ======================================== */
+
+#particulas {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+}
+
+.particula {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #fff4a3;
+
+    box-shadow:
+        0 0 12px #fff4a3;
+
+    animation:
+        flotar 4s ease-in-out infinite alternate;
+}
+
+@keyframes flotar {
+
+    from {
+        transform: translate(0, 0);
+        opacity: 0.2;
+    }
+
+    to {
+        transform: translate(20px, -45px);
+        opacity: 1;
+    }
+}
+
+
+/* ========================================
+   LETRA KARAOKE
+   ======================================== */
+
+.mensaje {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: center;
+
+    pointer-events: none;
+
+    opacity: 1;
+
+    overflow: hidden;
+}
+
+.letra-karaoke {
+    position: absolute;
+
+    top: 42%;
+
+    width: 90%;
+    max-width: 650px;
+
+    height: 42vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 15%,
+        black 100%
+    );
+
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 15%,
+        black 100%
+    );
+
+    scroll-behavior: smooth;
+}
+
+.linea-karaoke {
+    flex-shrink: 0;
+
+    margin: 4px 0;
+
+    padding: 2px 12px;
+
+    font-size: clamp(
+        18px,
+        3vw,
+        28px
+    );
+
+    font-weight: bold;
+
+    line-height: 1.35;
+
+    color: rgba(
+        255,
+        255,
+        255,
+        0.38
+    );
+
+    text-shadow:
+        0 0 8px rgba(
+            0,
+            0,
+            0,
+            0.9
+        );
+
+    transition:
+        color 0.5s ease,
+        text-shadow 0.5s ease,
+        transform 0.5s ease,
+        opacity 0.5s ease;
+}
+
+.linea-pasada {
+    color: rgba(
+        255,
+        255,
+        255,
+        0.35
+    );
+
+    transform: scale(0.95);
+
+    opacity: 0.65;
+}
+
+.linea-actual {
+    color: #ffe66d;
+
+    transform: scale(1.08);
+
+    text-shadow:
+        0 0 5px #fff,
+        0 0 12px #ffd83d,
+        0 0 25px rgba(
+            255,
+            216,
+            61,
+            0.7
+        );
+
+    animation:
+        karaokeEntrada 0.6s ease;
+}
+
+@keyframes karaokeEntrada {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1.08);
+    }
+}
+
+
+/* ========================================
+   VENTANA DE LA LUNA
+   ======================================== */
+
+.mensaje-luna {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 50;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(
+        0,
+        0,
+        0,
+        0.35
+    );
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.5s ease,
+        visibility 0.5s ease;
+
+    padding: 25px;
+}
+
+.mensaje-luna.mostrar {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+.caja-luna {
+    position: relative;
+
+    width: min(
+        500px,
+        90%
+    );
+
+    padding: 35px 30px;
+
+    border-radius: 20px;
+
+    background: rgba(
+        12,
+        23,
+        40,
+        0.92
+    );
+
+    border: 1px solid rgba(
+        255,
+        244,
+        196,
+        0.35
+    );
+
+    box-shadow:
+        0 0 30px rgba(
+            255,
+            244,
+            196,
+            0.15
+        );
+
+    color: white;
+
+    text-align: center;
+
+    transform: scale(0.8);
+
+    transition:
+        transform 0.5s ease;
+}
+
+.mensaje-luna.mostrar .caja-luna {
+    transform: scale(1);
+}
+
+#textoLuna {
+    font-size: 20px;
+
+    line-height: 1.6;
+
+    letter-spacing: 0.5px;
+}
+
+#cerrarLuna {
+    position: absolute;
+
+    top: 10px;
+    right: 15px;
+
+    border: none;
+
+    background: none;
+
+    color: rgba(
+        255,
+        255,
+        255,
+        0.7
+    );
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#cerrarLuna:hover {
+    color: white;
+
+    transform: scale(1.15);
+}
+
+
+/* ========================================
+   CELULAR
+   ======================================== */
+
+@media (max-width: 600px) {
+
+    .letra-karaoke {
+        top: 44%;
+
+        width: 94%;
+
+        height: 38vh;
+    }
+
+    .linea-karaoke {
+        font-size: 18px;
+
+        margin: 3px 0;
+    }
+
+    .luna {
+        width: 65px;
+        height: 65px;
+
+        top: 10%;
+        right: 10%;
+    }
+
+    #textoLuna {
+        font-size: 18px;
+    }
+}
